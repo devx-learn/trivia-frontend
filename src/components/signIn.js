@@ -6,7 +6,8 @@ import {
   ControlLabel,
   FormGroup,
   FormControl,
-  Row
+  Row,
+  Navbar,
 } from 'react-bootstrap'
 
 class SignIn extends Component {

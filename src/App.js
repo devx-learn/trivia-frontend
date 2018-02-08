@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Navbar } from 'react-bootstrap'
 import SignUp from './components/signUp'
 import Chat from './components/chat'
 import SignIn from './components/signIn'
@@ -10,9 +12,12 @@ import GamePage from './pages/game-page'
 class App extends Component {
     render() {
         return (
-            <div className="header">
-                <LandingPage />
-            </div>
+            <Router>
+                <div className="header">
+                    <Route exact path='/' component={LandingPage} />
+                    <Route path='/games' component={GamePage} />
+                </div>
+            </Router>
         )
     }
 }
