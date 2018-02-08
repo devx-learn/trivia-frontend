@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Jumbotron } from 'react-bootstrap';
 import io from "socket.io-client";
 import './chat.css';
 import moment from 'moment';
@@ -27,10 +28,10 @@ class Trivia extends Component {
             this.socket.on('question', this.addQuestion);
         })
     }
-
     updateUsers = (userList) => {
         this.setState({ users: userList })
     }
+
 
     userList = (users) => {
         let _this = this;

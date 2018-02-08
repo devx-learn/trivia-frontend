@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import {
+Jumbotron,
+Button,
+} from 'react-bootstrap';
 import SignUp from '../components/signUp';
 import Chat from '../components/chat';
 import SignIn from '../components/signIn';
@@ -35,6 +39,16 @@ class TriviaQuestions extends Component {
   render() {
     return (
             <div>
+            <Jumbotron>
+                <h1>Welcome to Trivia!</h1>
+                    <p className="question">
+                        This is where the questions will render
+                    </p>
+                    <Button bsStyle="primary">Answer A</Button>
+                    <Button bsStyle="primary">Answer B</Button>
+                    <Button bsStyle="primary">Answer C</Button>
+                    <Button bsStyle="primary">Answer D</Button>
+            </Jumbotron>;
                 {this.state.questions.map((question)=>{
                     return(
 
