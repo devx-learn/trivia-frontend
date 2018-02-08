@@ -26,3 +26,42 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+body{
+    background-color: #6FCB9F;
+}
+
+ h1 {
+     text-align: center;
+ }
+
+ .signin {
+     text-align: center;
+     border: 5px solid #C5EAD8;
+     border-radius: 50px;
+     background-color: #C5EAD8;
+     display: inline-block;
+     height: 300px;
+     width: 300px;
+     padding: 50px;
+
+
+
+ }
+ .signup {
+     text-align: center;
+     border: 5px solid #C5EAD8;
+     border-radius: 50px;
+     background-color: #C5EAD8;
+     display: inline-block;
+     height: 300px;
+     width: 300px;
+     padding: 50px;
+     margin-left: 20px;
+
+ }
+
+.container {
+    display: flex;
+    justify-content: center;
+}
