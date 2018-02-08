@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import SignUp from './components/signUp';
-import Chat from './components/chat';
-import SignIn from './components/signIn';
-import Trivia from './components/trivia';
-import './App.css';
+import SignUp from '../components/signUp';
+import Chat from '../components/chat';
+import SignIn from '../components/signIn';
+import Trivia from '../components/trivia';
+import '../App.css';
 
-class App extends Component {
+class LandingPageView extends Component {
   render() {
     return (
         <div className="header">
@@ -28,4 +28,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default LandingPageView;
