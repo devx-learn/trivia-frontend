@@ -17,7 +17,7 @@ class LandingPageView extends Component {
             <div className="container">
                 <div className="signup">
                     <h3> Sign-Up </h3>
-                        <SignUp />
+                        <SignUp onSubmit={this.props.onSubmit} />
                 </div>
             </div>
         </div>

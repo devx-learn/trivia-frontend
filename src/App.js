@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Navbar } from 'react-bootstrap'
-// import SignUp from './components/signUp'
+
 import Chat from './components/chat'
 import SignIn from './components/signIn'
 import Trivia from './components/trivia'
-import './App.css'
 import LandingPage from './pages/landing-page'
 import GamePage from './pages/game-page'
-import SignUp from './pages/sign-up-page'
+import SignUpPage from './pages/sign-up-page'
+
+import './App.css'
 
 class App extends Component {
     render() {
@@ -17,7 +18,9 @@ class App extends Component {
                 <div className="header">
                     <Route exact path='/' component={LandingPage} />
                     <Route path='/games' component={GamePage} />
-                    <Route path='/sign-up' component={SignUp} />
+                    <Route path='/sign-up' render={(props) => {
+                        return <SignUpPage onSubmit={handleSubmit} />
+                    }} />
                 </div>
             </Router>
         )
@@ -25,3 +28,14 @@ class App extends Component {
 }
 
 export default App;
+
+function handleSubmit(form) {
+    console.log("this is inside the function passed as a prop");
+    console.log(form);
+
+    // fetch
+}
+
+function getQuiz(amount, category, difficulty, type) {
+    return fetch(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`)
+}
