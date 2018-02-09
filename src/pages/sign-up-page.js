@@ -6,6 +6,7 @@ import Trivia from '../components/trivia'
 import { Link } from 'react-router-dom'
 import '../App.css';
 
+//Home page that renders the sign in component
 class LandingPageView extends Component {
   render() {
     return (
@@ -14,13 +15,12 @@ class LandingPageView extends Component {
                 <h1><u> Hello Trivia Team</u></h1>
             </div>
             <div className="container">
-                <div className="signin">
-                    <h3>Sign-In</h3>
-                        <SignIn />
+                <div className="signup">
+                    <h3> Sign-Up </h3>
+                        <SignUp />
                 </div>
             </div>
         </div>
-
     );
   }
 }

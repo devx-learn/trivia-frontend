@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom'
 import {
   Button,
   Col,
@@ -60,7 +60,16 @@ class SignIn extends Component {
 
         <Row>
           <Col xs={6}>
+          <Link to="/games">
             <Button id="submit">Log into your Trivia Account!</Button>
+            </Link>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6}>
+          <Link to="/sign-up">
+            <Button id="submit">Dont have a Trivia Accout?!</Button>
+            </Link>
           </Col>
         </Row>
 
