@@ -24,7 +24,7 @@ class SignUp extends Component {
         const formState = Object.assign({}, this.state.form)
         formState[e.target.name] = e.target.value
         this.setState({form: formState})
-  }
+    }
 
   render() {
     return (
