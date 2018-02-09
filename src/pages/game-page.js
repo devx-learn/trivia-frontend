@@ -41,7 +41,6 @@ class TriviaQuestions extends Component {
             <div>
             <Jumbotron>
                 <h1>Welcome to Trivia!</h1>
-                    {this.questionData}
                     <p className="question">
                     </p>
                     <Button bsStyle="primary">Answer A</Button>
