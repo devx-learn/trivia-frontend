@@ -17,10 +17,25 @@ class TriviaQuestions extends Component {
     };
   }
 
+  /**
+* Shuffles array in place.
+* @param {Array} a items An array containing the items.
+*/
+    shuffle(a) {
+        var j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = a[i];
+            a[i] = a[j];
+            a[j] = x;
+        }
+    }
+
   componentWillMount() {
     let questionData = this.state.rawData.results;
     let newQuestions = [];
     let questions = [];
+
 
     questionData.forEach(result => {
       newQuestions.push({
@@ -32,20 +47,37 @@ class TriviaQuestions extends Component {
         incorrect_answers: result.incorrect_answers
       });
     });
+    this.shuffle(newQuestions)
     this.setState({ questions: newQuestions });
   }
 
+  answerClick(answer){
+    let correctAnswer = this.state.questions[this.state.currentQuestionIndex].correct_answer;
+    if(correctAnswer === answer){
+      alert("you're right")
+    } else {
+      alert("you're wrong, the correct answer is " + correctAnswer)
+    }
+    let nextQuestionIndex = this.state.currentQuestionIndex+1
+    this.setState({currentQuestionIndex: nextQuestionIndex})
+  }
+  
   render() {
     let currentQuestion = this.state.questions[this.state.currentQuestionIndex];
+    let answers = [];
+    answers.push(currentQuestion.correct_answer);
+    answers = answers.concat(currentQuestion.incorrect_answers);
+    this.shuffle(answers);
+
     return (
       <div>
         <Jumbotron>
           <h1>Welcome to Trivia!</h1>
           <p className="question">{currentQuestion.question}</p>
-          <Button bsStyle="primary">Answer A</Button>
-          <Button bsStyle="primary">Answer B</Button>
-          <Button bsStyle="primary">Answer C</Button>
-          <Button bsStyle="primary">Answer D</Button>
+          <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[0])}>{answers[0]}</Button>
+          <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[1])}>{answers[1]}</Button>
+          <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[2])}>{answers[2]}</Button>
+          <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[3])}>{answers[3]}</Button>
         </Jumbotron>
         {false && this.state.questions.map(question => {
             return (
