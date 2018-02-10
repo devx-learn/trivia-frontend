@@ -51,6 +51,7 @@ class TriviaQuestions extends Component {
     this.setState({ questions: newQuestions });
   }
 
+
   answerClick(answer){
     let correctAnswer = this.state.questions[this.state.currentQuestionIndex].correct_answer;
     if(correctAnswer === answer){
@@ -61,7 +62,7 @@ class TriviaQuestions extends Component {
     let nextQuestionIndex = this.state.currentQuestionIndex+1
     this.setState({currentQuestionIndex: nextQuestionIndex})
   }
-  
+
   render() {
     let currentQuestion = this.state.questions[this.state.currentQuestionIndex];
     let answers = [];
@@ -79,6 +80,7 @@ class TriviaQuestions extends Component {
           <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[2])}>{answers[2]}</Button>
           <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[3])}>{answers[3]}</Button>
         </Jumbotron>
+        <Chat username='test user'/>
         {false && this.state.questions.map(question => {
             return (
               <div>
