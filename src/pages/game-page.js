@@ -8,29 +8,29 @@ import "../App.css"
 import sample from "../sample"
 
 const categoryImages = {
-  "Animals": "./images/background.jpeg",
-  "General Knowledge" : "",
-  "Entertainmnet: Books" : "",
-  "Entertainmnet: Film": "",
-  "Entertainmnet: Musicals & Theatres" : "",
-  "Entertainmnet: Television" : "",
-  "Entertainmnet: Video Games" : "",
-  "Entertainmnet: Board Games" : "",
-  "Science & Nature" : "",
-  "Science: Computers" : "",
-  "Science: Mathematics" : "",
-  "Mythology" : "",
-  "Sports" : "",
-  "Geography" : "",
-  "History" : "",
-  "Politics" : "",
-  "Art" : "",
-  "Celebrities" : "",
-  "Vehicles" : "",
-  "Entertainmnet: Comics" : "",
-  "Science: Gadgets" : "",
-  "Entertainmnet: Japanese Anime & Manga" : "",
-  "Entertainmnet: Cartoon & Animations" : ""
+  "Animals": "./images/Animals.jpg",
+  "General Knowledge" : "./images/general-knowledge.jpg",
+  "Entertainment: Books" : "./images/entertainment-books.jpg",
+  "Entertainment: Film": "./images/Entertainment-film.jpg",
+  "Entertainment: Music" : "./images/entertainment-music.jpeg",
+  "Entertainment: Television" : "./images/entertainment-television.jpg",
+  "Entertainment: Video Games" : "./images/background.jpeg",
+  "Entertainment: Board Games" : "./images/background.jpeg",
+  "Science & Nature" : "./images/background.jpeg",
+  "Science: Computers" : "./images/background.jpeg",
+  "Science: Mathematics" : "./images/background.jpeg",
+  "Mythology" : "./images/background.jpeg",
+  "Sports" : "./images/background.jpeg",
+  "Geography" : "./images/background.jpeg",
+  "History" : "./images/background.jpeg",
+  "Politics" : "./images/background.jpeg",
+  "Art" : "./images/background.jpeg",
+  "Celebrities" : "./images/background.jpeg",
+  "Vehicles" : "./images/background.jpeg",
+  "Entertainment: Comics" : "./images/background.jpeg",
+  "Science: Gadgets" : "./images/background.jpeg",
+  "Entertainment: Japanese Anime & Manga" : "./images/background.jpeg",
+  "Entertainment: Cartoon & Animations" : "./images/background.jpeg"
 }
 
 class TriviaQuestions extends Component {
@@ -113,15 +113,16 @@ class TriviaQuestions extends Component {
     return (
       <div>
         <Jumbotron>
+
+          <img id="background" src={categoryImage} alt="Category Image"/>
           <h1>Welcome to Trivia!</h1>
-          <img src={categoryImage} alt="Smiley face" height="42" width="42"/>
           <p className={currentQuestion.category}>{currentQuestion.category}</p>
           <p className="question">{currentQuestion.question}</p>
-
           <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[0])}>{answers[0]}</Button>
           <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[1])}>{answers[1]}</Button>
           <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[2])}>{answers[2]}</Button>
           <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[3])}>{answers[3]}</Button>
+
         </Jumbotron>
         <Chat username='test user'/>
 
