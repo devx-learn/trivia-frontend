@@ -9,7 +9,28 @@ import sample from "../sample"
 
 const categoryImages = {
   "Animals": "./images/background.jpeg",
-  "Sports" : "./images/trooper.png",
+  "General Knowledge" : "",
+  "Entertainmnet: Books" : "",
+  "Entertainmnet: Film": "",
+  "Entertainmnet: Musicals & Theatres" : "",
+  "Entertainmnet: Television" : "",
+  "Entertainmnet: Video Games" : "",
+  "Entertainmnet: Board Games" : "",
+  "Science & Nature" : "",
+  "Science: Computers" : "",
+  "Science: Mathematics" : "",
+  "Mythology" : "",
+  "Sports" : "",
+  "Geography" : "",
+  "History" : "",
+  "Politics" : "",
+  "Art" : "",
+  "Celebrities" : "",
+  "Vehicles" : "",
+  "Entertainmnet: Comics" : "",
+  "Science: Gadgets" : "",
+  "Entertainmnet: Japanese Anime & Manga" : "",
+  "Entertainmnet: Cartoon & Animations" : ""
 }
 
 class TriviaQuestions extends Component {
