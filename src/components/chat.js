@@ -92,7 +92,7 @@ class Chat extends Component {
     onKeyPress = (e) => {
         if (e.charCode === 13) {
             this.sendMessage(e);
-        }
+        } 
     }
 
     onChange = (e) => {

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom'
 import {
   Button,
   Col,
   ControlLabel,
   FormGroup,
   FormControl,
-  Row
+  Row,
 } from 'react-bootstrap'
 
 class SignUp extends Component {
@@ -24,7 +24,7 @@ class SignUp extends Component {
         const formState = Object.assign({}, this.state.form)
         formState[e.target.name] = e.target.value
         this.setState({form: formState})
-  }
+    }
 
   render() {
     return (
@@ -63,7 +63,9 @@ class SignUp extends Component {
 
         <Row>
           <Col xs={6}>
+          <Link to="/games">
             <Button id="submit">Create a Trivia Account!</Button>
+            </Link>
           </Col>
         </Row>
 
