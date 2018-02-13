@@ -12,8 +12,8 @@ class TriviaQuestions extends Component {
     super(props);
 
     this.state = {
-      rawData: sample,
-      currentQuestionIndex: 0
+        rawData: sample,
+        currentQuestionIndex: 0
     };
   }
 
@@ -31,17 +31,53 @@ class TriviaQuestions extends Component {
         }
     }
 
-
-
-
-
   componentWillMount() {
     this.QuizVariables()
+    this.apiNormalization()
+  }
+
+  // TODO: This is not supplying the random number of the range and gives undefined
+
+  /*random int between min and max for chosen number to insert into fetch*/
+    randomInt(min,max){
+        return
+        var min,max;
+           Math.floor((Math.random() * max) + min);
+    }
+
+    QuizVariables(){
+
+          var categoryRandom = this.randomInt(9,32)
+          var difficultyRandom = this.randomInt(1,3)
+
+          // console.log("This is the random number " + " " + categoryRandom);
+      this.getQuiz(10,categoryRandom,difficultyRandom,"multiple")
+    }
+
+  /* Call to API hosted site*/
+    getQuiz(amount, category, difficulty, type) {
+        return
+        var dynamicURL = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`
+
+console.log(dynamicURL)
+debugger
+        fetch(dynamicURL)
+        .then(response => response.json())
+        .then(resp => {
+            console.log(resp);
+            this.setState({
+                data: resp,
+                rawData: resp
+            });
+        })
+            .catch(error => console.error('Server Error'))
+        }
+
+    apiNormalization(){
 
     let questionData = this.state.rawData.results;
     let newQuestions = [];
     let questions = [];
-
 
     questionData.forEach(result => {
       newQuestions.push({
@@ -55,43 +91,8 @@ class TriviaQuestions extends Component {
     });
     this.shuffle(newQuestions)
     this.setState({ questions: newQuestions });
-  }
-
-/*
-  Example
-  https://opentdb.com/api.php?amount=10&category=11&difficulty=easy&type=multiple
-   */
-
-  /*random int between min and max for chosen number to insert into fetch*/
-
-  // TODO: This is not supplying the random number of the range and gives undefined
-    randomInt(min,max){
-
-          var ChosenCategory = Math.floor((Math.random() * max) + min);
-
-          var ChosenDifficulty = Math.floor((Math.random() * max) + min);
-
-          this.getQuiz(10,this.ChosenCategory,this.ChosenDifficulty,"multiple")
     }
 
-    QuizVariables(){
-      var categoryRandom = this.randomInt(9,32)
-      var difficultyRandom = this.randomInt(1,3)
-console.log("This is the random number between 9-32" + " " + categoryRandom);
-    }
-
-  /* Call to API hosted site*/
-      getQuiz(amount, category, difficulty, type) {
-            fetch(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`)
-            .then(function(response) {
-                var newData = response;
-                console.log(newData);
-debugger
-                this.setState({rawData : newData})
-                .catch(error => console.error('Server Error'))
-
-  })
-              }
 
   answerClick(answer){
     let correctAnswer = this.state.questions[this.state.currentQuestionIndex].correct_answer;
