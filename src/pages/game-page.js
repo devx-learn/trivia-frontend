@@ -17,7 +17,7 @@ class TriviaQuestions extends Component {
     };
   }
 
-  /**
+  /*
 * Shuffles array in place.
 * @param {Array} a items An array containing the items.
 */
@@ -30,6 +30,44 @@ class TriviaQuestions extends Component {
             a[j] = x;
         }
     }
+
+/*
+Example
+https://opentdb.com/api.php?amount=10&category=11&difficulty=easy&type=multiple
+ */
+
+
+/*random int between min and max for chosen number to insert into fetch*/
+        randomInt(min,max){
+
+                var ChosenCategory = Math.floor((Math.random() * max) + min);
+
+                var ChosenDifficulty = Math.floor((Math.random() * max) + min);
+
+            return
+                 {
+                    ChosenCategory : ChosenCategory;
+                    ChosenDifficulty : ChosenDifficulty
+                }
+        }
+
+        QuizVariables(){
+            var categoryRandom = this.randomInt(9,32)
+            var difficultyRandom = this.randomInt(1,3)
+
+            this.getQuiz(1,this.ChosenCategory,this.ChosenDifficulty,"multiple")
+        }
+
+
+/* Call to API hosted site*/
+    getQuiz(amount, category, difficulty, type) {
+        return
+            var newRequest =
+              fetch(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`)
+              // this.setState({rawData : newRequest})
+    }
+
+
 
   componentWillMount() {
     let questionData = this.state.rawData.results;
