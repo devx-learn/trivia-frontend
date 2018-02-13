@@ -31,10 +31,11 @@ class SignIn extends Component {
                 <Row>
                     <Col xs={6}>
                         <FormGroup>
-                            <ControlLabel id="username">Username</ControlLabel>
+                            <ControlLabel id="username"></ControlLabel>
                             <FormControl
                                 type="text"
                                 name="username"
+                                placeholder="Username"
                                 value={this.state.form.username}
                                 onChange={this.handleChange.bind(this)}
                             />
@@ -45,10 +46,11 @@ class SignIn extends Component {
                 <Row>
                     <Col xs={6}>
                         <FormGroup>
-                            <ControlLabel id="password">Password</ControlLabel>
+                            <ControlLabel id="password"></ControlLabel>
                             <FormControl
                                 type="password"
                                 name="password"
+                                placeholder="Password"
                                 value={this.state.form.password}
                                 onChange={this.handleChange.bind(this)}
                             />
@@ -69,7 +71,7 @@ class SignIn extends Component {
                     <Col xs={6}>
                         <Link to="/sign-up">
                             <Button id="logInbtn">
-                                Dont have a Trivia Accout?!
+                                Dont have a Trivia Accout?
                             </Button>
                         </Link>
                     </Col>
