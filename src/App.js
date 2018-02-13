@@ -68,9 +68,11 @@ class App extends Component {
         return (
             <Router>
                 <div className="header">
-                    <Route exact path='/' component={LandingPage} />
-                    <Route path='/games' component={GamePage} />
-                    <Route path='/sign-up' component={SignUp} />
+                    <div id="landingPage">
+                        <Route exact path='/' component={LandingPage} />
+                    </div>
+                        <Route path='/games' component={GamePage} />
+                        <Route path='/sign-up' component={SignUp} />
                 </div>
             </Router>
         )

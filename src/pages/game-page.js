@@ -1,20 +1,50 @@
-import React, { Component } from "react";
-import { Jumbotron, Button } from "react-bootstrap";
-import SignUp from "../components/signUp";
-import Chat from "../components/chat";
-import SignIn from "../components/signIn";
-import Trivia from "../components/trivia";
-import "../App.css";
-import sample from "../sample";
+import React, { Component } from "react"
+import { Jumbotron, Button } from "react-bootstrap"
+import SignUp from "../components/signUp"
+import Chat from "../components/chat"
+import SignIn from "../components/signIn"
+import Trivia from "../components/trivia"
+import "../App.css"
+import sample from "../sample"
+
+const categoryImages = {
+  "Animals": "./images/background.jpeg",
+  "General Knowledge" : "",
+  "Entertainmnet: Books" : "",
+  "Entertainmnet: Film": "",
+  "Entertainmnet: Musicals & Theatres" : "",
+  "Entertainmnet: Television" : "",
+  "Entertainmnet: Video Games" : "",
+  "Entertainmnet: Board Games" : "",
+  "Science & Nature" : "",
+  "Science: Computers" : "",
+  "Science: Mathematics" : "",
+  "Mythology" : "",
+  "Sports" : "",
+  "Geography" : "",
+  "History" : "",
+  "Politics" : "",
+  "Art" : "",
+  "Celebrities" : "",
+  "Vehicles" : "",
+  "Entertainmnet: Comics" : "",
+  "Science: Gadgets" : "",
+  "Entertainmnet: Japanese Anime & Manga" : "",
+  "Entertainmnet: Cartoon & Animations" : ""
+}
 
 class TriviaQuestions extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       rawData: sample,
-      currentQuestionIndex: 0
-    };
+      currentQuestionIndex: 0,
+      category: {
+        name: "",
+        image: ""
+      }
+    }
   }
 
   /**
@@ -22,65 +52,80 @@ class TriviaQuestions extends Component {
 * @param {Array} a items An array containing the items.
 */
     shuffle(a) {
-        var j, x, i;
+        var j, x, i
         for (i = a.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * (i + 1));
-            x = a[i];
-            a[i] = a[j];
-            a[j] = x;
+            j = Math.floor(Math.random() * (i + 1))
+            x = a[i]
+            a[i] = a[j]
+            a[j] = x
         }
     }
 
   componentWillMount() {
-    let questionData = this.state.rawData.results;
-    let newQuestions = [];
-    let questions = [];
+    let data = this.state.rawData.results
 
+    let questions = data.map((q) => {
+      return {
+        category: q.category,
+        type: q.type,
+        difficulty: q.difficulty,
+        question: q.question,
+        correct_answer: q.correct_answer,
+        incorrect_answers: q.incorrect_answers
+      }
+    })
 
-    questionData.forEach(result => {
-      newQuestions.push({
-        category: result.category,
-        type: result.type,
-        difficulty: result.difficulty,
-        question: result.question,
-        correct_answer: result.correct_answer,
-        incorrect_answers: result.incorrect_answers
-      });
-    });
-    this.shuffle(newQuestions)
-    this.setState({ questions: newQuestions });
+    this.shuffle(questions)
+
+    this.setState({
+      questions: questions
+    })
   }
 
+  currentQuestion() {
+    const { questions, currentQuestionIndex } = this.state
 
-  answerClick(answer){
-    let correctAnswer = this.state.questions[this.state.currentQuestionIndex].correct_answer;
-    if(correctAnswer === answer){
+    return questions[currentQuestionIndex]
+  }
+
+  answerClick(answer) {
+    const { currentQuestionIndex } = this.state
+    let correctAnswer = this.currentQuestion().correct_answer
+
+    if(correctAnswer === answer) {
       alert("you're right")
     } else {
       alert("you're wrong, the correct answer is " + correctAnswer)
     }
-    let nextQuestionIndex = this.state.currentQuestionIndex+1
-    this.setState({currentQuestionIndex: nextQuestionIndex})
+
+    this.setState({
+      currentQuestionIndex: currentQuestionIndex + 1
+    })
   }
 
   render() {
-    let currentQuestion = this.state.questions[this.state.currentQuestionIndex];
-    let answers = [];
-    answers.push(currentQuestion.correct_answer);
-    answers = answers.concat(currentQuestion.incorrect_answers);
-    this.shuffle(answers);
+    let currentQuestion = this.currentQuestion()
+    let categoryImage = categoryImages[currentQuestion.category]
+    let answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]
+
+    this.shuffle(answers)
 
     return (
       <div>
         <Jumbotron>
           <h1>Welcome to Trivia!</h1>
+          <img src={categoryImage} alt="Smiley face" height="42" width="42"/>
+          <p className={currentQuestion.category}>{currentQuestion.category}</p>
           <p className="question">{currentQuestion.question}</p>
+
           <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[0])}>{answers[0]}</Button>
           <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[1])}>{answers[1]}</Button>
           <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[2])}>{answers[2]}</Button>
           <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[3])}>{answers[3]}</Button>
         </Jumbotron>
         <Chat username='test user'/>
+
+
         {false && this.state.questions.map(question => {
             return (
               <div>
@@ -112,11 +157,11 @@ class TriviaQuestions extends Component {
                   <br />
                 </div>
               </div>
-            );
+            )
           })}
       </div>
-    );
+    )
   }
 }
 
-export default TriviaQuestions;
+export default TriviaQuestions
