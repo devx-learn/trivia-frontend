@@ -27,23 +27,27 @@
   to { transform: rotate(360deg); }
 }
 
-body{
-    background-color: #6FCB9F;
+body {
+  background: #000000 url('/images/stars.jpg');
+  height: 100%;
+  width: 100%;
 }
 
- h1 {
-     text-align: center;
- }
+h1 {
+  text-align: center;
+  color: #ffffff;
+}
 
- .signin {
-     text-align: center;
-     border: 5px solid #C5EAD8;
-     border-radius: 50px;
-     background-color: #C5EAD8;
-     display: inline-block;
-     height: 300px;
-     width: 300px;
-     padding: 50px;
+.signin {
+  text-align: center;
+  border: 5px solid #04aae4;
+  border-radius: 50px;
+  background-color: #04AAE4;
+  display: inline-block;
+  height: 300px;
+  width: 300px;
+  padding: 50px;
+  margin-top: 150px;
 }
 
 .Animals{
@@ -51,28 +55,45 @@ body{
 }
 
 
- .signup {
-     text-align: center;
-     border: 5px solid #C5EAD8;
-     border-radius: 50px;
-     background-color: #C5EAD8;
-     display: inline-block;
-     height: 300px;
-     width: 300px;
-     padding: 50px;
-
-
- }
+.signup {
+  text-align: center;
+  border: 5px solid #C5EAD8;
+  border-radius: 50px;
+  background-color: #C5EAD8;
+  display: inline-block;
+  height: 300px;
+  width: 300px;
+  padding: 50px;
+}
 
 .question {
-    font-size: 50px;
+  font-size: 50px;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .currentQuestion.category {
   font-size: 499px;
+}
+
+  #logInbtn {
+  background-color: #ffffff; 
+  border: 2px solid #000000;
+  color: #000000;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  width: 275px;
+}
+
+#logInbtn:hover {
+  background-color: #E4AE04;
+  color: white;
+  transition-duration: 1s;
 }
