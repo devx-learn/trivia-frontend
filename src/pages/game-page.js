@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Button } from "react-bootstrap"
+// import { Button } from "react-bootstrap"
 import "../App.css"
 import sample from "../sample"
 
@@ -115,14 +115,16 @@ class TriviaQuestions extends Component {
     return (
       <div>
           <img id="background" src={categoryImage} alt="category"/>
-          <h1>Welcome to Trivia!</h1>
+          <h1 id="welcome">Welcome to Trivia!</h1>
           <h3 className="score">Score: {score}</h3>
           <p className="category">{currentQuestion.category}</p>
           <p className="question">{decodeEntities(currentQuestion.question)}</p>
           <h2></h2>
+          <div className="answer-container">
           {answers.map((a) => {
-            return <Button key={a} bsStyle="primary" onClick={this.answerClick.bind(this, a)}>{decodeEntities(a)}</Button>
+            return <div className="answer-button" key={a} onClick={this.answerClick.bind(this, a)}>{decodeEntities(a)}</div>
           })}
+          </div>
       </div>
     )
   }
