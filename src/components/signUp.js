@@ -32,9 +32,17 @@ class SignUp extends Component {
         this.setState({form: formState})
     }
 
-    handleSubmit(){
-        this.props.onSubmit(this.state.form)
-        console.log(this.state.form)
+    handleSubmit() {
+        const { onSubmit } = this.props
+        const { form } = this.state
+
+        console.log("form:", form);
+
+        if(onSubmit) {
+            onSubmit(form)
+        } else {
+            console.log("no onSubmit passed to Signup Component");
+        }
     }
 
     errorsFor(attribute){
@@ -61,7 +69,7 @@ class SignUp extends Component {
                     </Col>
                 </Row>
 
-            <div class='forms'>
+            <div className='forms'>
                  <Row>
                    <Col xs={6}>
                    <FormGroup
