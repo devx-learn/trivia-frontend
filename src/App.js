@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Navbar } from 'react-bootstrap'
-import Chat from './components/chat'
-import SignIn from './components/signIn'
+import { BrowserRouter as Router,  Route } from 'react-router-dom'
 import SignUp from './components/signUp'
-import Trivia from './components/trivia'
 import LandingPage from './pages/landing-page'
 import GamePage from './pages/game-page'
-import LandingPageView from './pages/sign-up-page'
 import './App.css'
 
 
