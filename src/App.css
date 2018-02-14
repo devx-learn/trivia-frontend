@@ -20,10 +20,9 @@
 
 
 
-body {
-  background: #000000 url('/images/stars.jpg');
-  height: 100%;
-  width: 100%;
+.home-bg {
+  background: url('/images/stars.jpg');
+  height: 100vh;
 }
 
 h1 {
@@ -33,14 +32,16 @@ h1 {
 
 .signin {
   text-align: center;
-  border: 5px solid #04aae4;
+  border: 5px solid #1F3E5A;
   border-radius: 50px;
-  background-color: #04AAE4;
+  background-color: #281C3C;
   display: inline-block;
   height: 300px;
-  width: 300px;
+  width: 330px;
   padding: 50px;
-  margin-top: 150px;
+  margin-top: 80px;
+  color: #ffffff;
+
 }
 
 
@@ -77,21 +78,28 @@ h1 {
   font-size: 499px;
 }
 
+<<<<<<< HEAD
   #logInbtn {
   background-color: #ffffff;
   border: 2px solid #000000;
+=======
+#logInbtn {
+  background-color: #ffffff; 
+  border: 2px solid #ffffff;
+>>>>>>> 5934f1d97f409d86e383123c8da8d002c3932f01
   color: #000000;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin-top: 20px;
-  width: 275px;
+  width: 259px;
+  margin-top: 45px;
 }
 
 #logInbtn:hover {
-  background-color: #E4AE04;
+  background-color: #1F3E5A;
+  border-color: #1F3E5A;
   color: white;
   transition-duration: 1s;
 }

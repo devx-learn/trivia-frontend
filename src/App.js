@@ -1,11 +1,74 @@
 import React, { Component } from 'react'
+<<<<<<< HEAD
 import { BrowserRouter as Router,  Route } from 'react-router-dom'
 import './App.css'
+=======
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Navbar } from 'react-bootstrap'
+import Chat from './components/chat'
+import SignIn from './components/signIn'
+import SignUp from './components/signUp'
+import Trivia from './components/trivia'
+>>>>>>> 5934f1d97f409d86e383123c8da8d002c3932f01
 import LandingPage from './pages/landing-page'
 import GamePage from './pages/game-page'
-import SignUp from './pages/sign-up-page'
+import LandingPageView from './pages/sign-up-page'
+import './App.css'
+
 
 class App extends Component {
+  constructor(props){
+      super(props)
+      this.state = {
+          user: [],
+          newUserSuccess: false,
+          errors: null
+      }
+  }
+
+  newUserSubmit(){}
+
+  // componentWillMount(){
+  //   fetch(`${this.state.apiUrl}/user`)
+  //   .then((rawResponse) =>{
+  //       return rawResponse.json()
+  //   })
+  //   .then((parsedResponse)=>{
+  //       this.setState({user: parsedResponse.user})
+  //       console.log(this.state.user);
+  //   })
+  // }
+
+
+  handleNewUser(params){
+    fetch(`${this.state.apiUrl}/user`,
+        {
+            body: JSON.stringify(params),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: "POST"
+        }
+    )
+    .then((rawResponse)=>{
+        return rawResponse.json()
+    })
+    .then((parsedResponse) =>{
+        if(parsedResponse.errors){
+            this.setState({errors: parsedResponse.errors})
+        }else{
+            const user = Object.assign([], this.state.user)
+            user.push(parsedResponse.user)
+            this.setState({
+                user: user,
+                errors: null,
+                newUserSuccess: true
+        })
+       }
+    })
+  }
+
+
     render() {
         return (
             <Router>
