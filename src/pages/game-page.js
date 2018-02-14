@@ -116,9 +116,10 @@ class TriviaQuestions extends Component {
       <div>
           <img id="background" src={categoryImage} alt="category"/>
           <h1>Welcome to Trivia!</h1>
-          <h3 className="question">Score: {score}</h3>
-          <p className={currentQuestion.category}>{currentQuestion.category}</p>
+          <h3 className="score">Score: {score}</h3>
+          <p className="category">{currentQuestion.category}</p>
           <p className="question">{decodeEntities(currentQuestion.question)}</p>
+          <h2></h2>
           {answers.map((a) => {
             return <Button key={a} bsStyle="primary" onClick={this.answerClick.bind(this, a)}>{decodeEntities(a)}</Button>
           })}
