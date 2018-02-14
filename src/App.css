@@ -55,8 +55,9 @@ h1 {
 }
 
 
-.signup {
-  text-align: center;
+#signUpForm {
+  display: flex;
+  justify-content: center;
   border: 5px solid #C5EAD8;
   border-radius: 50px;
   background-color: #C5EAD8;
@@ -80,7 +81,7 @@ h1 {
 }
 
   #logInbtn {
-  background-color: #ffffff; 
+  background-color: #ffffff;
   border: 2px solid #000000;
   color: #000000;
   padding: 15px 32px;

@@ -50,7 +50,7 @@ class SignUp extends Component {
 
     render(){
         return (
-            <form>
+            <form id="signUpForm">
                 <Row>
                     <Col xs={6}>
                         {this.props.errors &&
