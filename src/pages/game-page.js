@@ -1,36 +1,33 @@
 import React, { Component } from "react"
-import { Jumbotron, Button } from "react-bootstrap"
-import SignUp from "../components/signUp"
-import Chat from "../components/chat"
-import SignIn from "../components/signIn"
-import Trivia from "../components/trivia"
+import { Button } from "react-bootstrap"
 import "../App.css"
 import sample from "../sample"
 
 const categoryImages = {
-  "Animals": "./images/background.jpeg",
-  "General Knowledge" : "",
-  "Entertainmnet: Books" : "",
-  "Entertainmnet: Film": "",
-  "Entertainmnet: Musicals & Theatres" : "",
-  "Entertainmnet: Television" : "",
-  "Entertainmnet: Video Games" : "",
-  "Entertainmnet: Board Games" : "",
-  "Science & Nature" : "",
-  "Science: Computers" : "",
-  "Science: Mathematics" : "",
-  "Mythology" : "",
-  "Sports" : "",
-  "Geography" : "",
-  "History" : "",
-  "Politics" : "",
-  "Art" : "",
-  "Celebrities" : "",
-  "Vehicles" : "",
-  "Entertainmnet: Comics" : "",
-  "Science: Gadgets" : "",
-  "Entertainmnet: Japanese Anime & Manga" : "",
-  "Entertainmnet: Cartoon & Animations" : ""
+  "Animals": "./images/Animals.jpg",
+  "General Knowledge" : "./images/general-knowledge.jpg",
+  "Entertainment: Books" : "./images/books.jpg",
+  "Entertainment: Film": "./images/Entertainment-film.jpg",
+  "Entertainment: Music" : "./images/music.jpg",
+  "Entertainment: Television" : "./images/entertainment-television.jpg",
+  "Entertainment: Video Games" : "./images/entertainment-video-games.jpg",
+  "Entertainment: Board Games" : "./images/entertainment-board-games.jpg",
+  "Science & Nature" : "./images/science-nature.jpg",
+  "Science: Computers" : "./images/science-computers.jpg",
+  "Science: Mathematics" : "./images/science-math.jpg",
+  "Mythology" : "./images/mythology.jpg",
+  "Sports" : "./images/sports.jpg",
+  "Geography" : "./images/geography.png",
+  "History" : "./images/history.jpg",
+  "Politics" : "./images/politics.jpg",
+  "Art" : "./images/art.jpg",
+  "Celebrities" : "./images/background.jpg",
+  "Vehicles" : "./images/cars.jpg",
+  "Entertainment: Comics" : "./images/comic-book.jpg",
+  "Science: Gadgets" : "./images/Gadgets.jpg",
+  "Entertainment: Japanese Anime & Manga" : "./images/Japanese-Anime.png",
+  "Entertainment: Cartoon & Animations" : "./images/animation.jpg",
+  "Entertainment: Musicals & Theatres" : "./images/animation.jpg"
 }
 
 class TriviaQuestions extends Component {
@@ -40,6 +37,7 @@ class TriviaQuestions extends Component {
     this.state = {
       rawData: sample,
       currentQuestionIndex: 0,
+      score: 0,
       category: {
         name: "",
         image: ""
@@ -76,7 +74,6 @@ class TriviaQuestions extends Component {
     })
 
     this.shuffle(questions)
-
     this.setState({
       questions: questions
     })
@@ -84,22 +81,25 @@ class TriviaQuestions extends Component {
 
   currentQuestion() {
     const { questions, currentQuestionIndex } = this.state
-
     return questions[currentQuestionIndex]
   }
 
   answerClick(answer) {
-    const { currentQuestionIndex } = this.state
+    let { currentQuestionIndex, score } = this.state
     let correctAnswer = this.currentQuestion().correct_answer
 
-    if(correctAnswer === answer) {
-      alert("you're right")
-    } else {
-      alert("you're wrong, the correct answer is " + correctAnswer)
-    }
+    correctAnswer === answer ? score++ : score--
+
+    // if(correctAnswer === answer) {
+    //   alert("you're right")
+    //   score++
+    // } else {
+    //   alert("you're wrong, the correct answer is " + correctAnswer)
+    // }
 
     this.setState({
-      currentQuestionIndex: currentQuestionIndex + 1
+      currentQuestionIndex: currentQuestionIndex + 1,
+      score: score,
     })
   }
 
@@ -110,54 +110,17 @@ class TriviaQuestions extends Component {
 
     this.shuffle(answers)
 
+    const { score } = this.state
+
     return (
       <div>
-        <Jumbotron>
+          <img id="background" src={categoryImage} alt="category"/>
           <h1>Welcome to Trivia!</h1>
-          <img src={categoryImage} alt="Smiley face" height="42" width="42"/>
+          <h3 className="question">Score: {score}</h3>
           <p className={currentQuestion.category}>{currentQuestion.category}</p>
-          <p className="question">{currentQuestion.question}</p>
-
-          <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[0])}>{answers[0]}</Button>
-          <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[1])}>{answers[1]}</Button>
-          <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[2])}>{answers[2]}</Button>
-          <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[3])}>{answers[3]}</Button>
-        </Jumbotron>
-        <Chat username='test user'/>
-
-
-        {false && this.state.questions.map(question => {
-            return (
-              <div>
-                <div>
-                  <p>
-                    CATEGORY : &emsp;
-                    {question.category}
-                  </p>
-
-                  <p>
-                    DIFFICULTY LEVEL : &emsp;
-                    {question.difficulty}
-                  </p>
-
-                  <p>
-                    QUESTION : &emsp;
-                    {question.question}
-                  </p>
-
-                  <p>
-                    CORRECT ANSWER : &emsp;
-                    {question.correct_answer}
-                  </p>
-
-                  <p>
-                    INCORRECT ANSWERS : &emsp;
-                    {question.incorrect_answers}
-                  </p>
-                  <br />
-                </div>
-              </div>
-            )
+          <p className="question">{decodeEntities(currentQuestion.question)}</p>
+          {answers.map((a) => {
+            return <Button key={a} bsStyle="primary" onClick={this.answerClick.bind(this, a)}>{decodeEntities(a)}</Button>
           })}
       </div>
     )
@@ -165,3 +128,10 @@ class TriviaQuestions extends Component {
 }
 
 export default TriviaQuestions
+
+
+function decodeEntities(encodedString) {
+    var textArea = document.createElement('textarea');
+    textArea.innerHTML = encodedString;
+    return textArea.value;
+}

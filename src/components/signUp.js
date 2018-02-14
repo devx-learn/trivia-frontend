@@ -33,8 +33,8 @@ class SignUp extends Component {
     }
 
     handleSubmit(){
-        this.props.onSubmit(this.state.form)
-        console.log(this.state.form)
+         this.props.onSubmit(this.state.form)
+         console.log(this.state.form)
     }
 
     errorsFor(attribute){

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Jumbotron } from 'react-bootstrap';
 import io from "socket.io-client";
 import './chat.css';
 import moment from 'moment';

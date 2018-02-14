@@ -1,36 +1,6 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-body {
-  background: #000000 url('/images/stars.jpg');
-  height: 100%;
-  width: 100%;
+.home-bg {
+  background: url('/images/stars.jpg');
+  height: 100vh;
 }
 
 h1 {
@@ -40,24 +10,34 @@ h1 {
 
 .signin {
   text-align: center;
-  border: 5px solid #04aae4;
+  border: 5px solid #1F3E5A;
   border-radius: 50px;
-  background-color: #04AAE4;
+  background-color: #281C3C;
   display: inline-block;
   height: 300px;
-  width: 300px;
+  width: 330px;
   padding: 50px;
-  margin-top: 150px;
+  margin-top: 80px;
+  color: #ffffff;
 }
 
-.Animals{
-  size: 5000px;
+#background {
+    position: fixed;
+    background-size: contain;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
 }
+
 
 
 #signUpForm {
   display: flex;
   justify-content: center;
+}
+.signup {
+  text-align: center;
+
   border: 5px solid #C5EAD8;
   border-radius: 50px;
   background-color: #C5EAD8;
@@ -68,7 +48,23 @@ h1 {
 }
 
 .question {
-  font-size: 50px;
+  font-size: 30px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  width:850px;
+  padding:15px;
+  background-color:white;
+  margin:0 auto;
+  color: #0D2E47;
+  font-family: Arial,Helvetica,sans-serif;
+  opacity:0.6;
+}
+
+.trans {
+  background-color:white;
+  color: #0D2E47;
+  opacity:0.6;
 }
 
 .container {
@@ -80,6 +76,7 @@ h1 {
   font-size: 499px;
 }
 
+
   #logInbtn {
   background-color: #ffffff;
   border: 2px solid #000000;
@@ -89,12 +86,13 @@ h1 {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin-top: 20px;
-  width: 275px;
+  width: 259px;
+  margin-top: 45px;
 }
 
 #logInbtn:hover {
-  background-color: #E4AE04;
+  background-color: #1F3E5A;
+  border-color: #1F3E5A;
   color: white;
   transition-duration: 1s;
 }
