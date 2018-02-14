@@ -124,3 +124,44 @@ h1 {
   color: white;
   transition-duration: 1s;
 }
+
+.masterForm {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  text-align: center;
+  border: 5px solid #1F3E5A;
+  border-radius: 50px;
+  background-color: #281C3C;
+  display: inline-block;
+  height: 500px;
+  width: 330px;
+  padding: 50px;
+  color: #ffffff;
+  margin-top: 100px;
+}
+.form-bg {
+  background: url('/images/stars.jpg');
+  height: 100vh;
+
+}
+
+.submitForm {
+  background-color: #ffffff; 
+  border: 2px solid #ffffff;
+  color: #000000;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.submitForm:hover {
+  background-color: #1F3E5A;
+  border-color: #1F3E5A;
+  color: white;
+  transition-duration: 1s;
+}
