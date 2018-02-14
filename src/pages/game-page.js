@@ -1,36 +1,33 @@
 import React, { Component } from "react"
-import { Jumbotron, Button } from "react-bootstrap"
-import SignUp from "../components/signUp"
-import Chat from "../components/chat"
-import SignIn from "../components/signIn"
-import Trivia from "../components/trivia"
+import { Button } from "react-bootstrap"
 import "../App.css"
 import sample from "../sample"
 
 const categoryImages = {
   "Animals": "./images/Animals.jpg",
   "General Knowledge" : "./images/general-knowledge.jpg",
-  "Entertainment: Books" : "./images/entertainment-books.jpg",
+  "Entertainment: Books" : "./images/books.jpg",
   "Entertainment: Film": "./images/Entertainment-film.jpg",
-  "Entertainment: Music" : "./images/entertainment-music.jpeg",
+  "Entertainment: Music" : "./images/music.jpg",
   "Entertainment: Television" : "./images/entertainment-television.jpg",
-  "Entertainment: Video Games" : "./images/background.jpeg",
-  "Entertainment: Board Games" : "./images/background.jpeg",
-  "Science & Nature" : "./images/background.jpeg",
-  "Science: Computers" : "./images/background.jpeg",
-  "Science: Mathematics" : "./images/background.jpeg",
-  "Mythology" : "./images/background.jpeg",
-  "Sports" : "./images/background.jpeg",
-  "Geography" : "./images/background.jpeg",
-  "History" : "./images/background.jpeg",
-  "Politics" : "./images/background.jpeg",
-  "Art" : "./images/background.jpeg",
-  "Celebrities" : "./images/background.jpeg",
-  "Vehicles" : "./images/background.jpeg",
-  "Entertainment: Comics" : "./images/background.jpeg",
-  "Science: Gadgets" : "./images/background.jpeg",
-  "Entertainment: Japanese Anime & Manga" : "./images/background.jpeg",
-  "Entertainment: Cartoon & Animations" : "./images/background.jpeg"
+  "Entertainment: Video Games" : "./images/entertainment-video-games.jpg",
+  "Entertainment: Board Games" : "./images/entertainment-board-games.jpg",
+  "Science & Nature" : "./images/science-nature.jpg",
+  "Science: Computers" : "./images/science-computers.jpg",
+  "Science: Mathematics" : "./images/science-math.jpg",
+  "Mythology" : "./images/mythology.jpg",
+  "Sports" : "./images/sports.jpg",
+  "Geography" : "./images/geography.jpg",
+  "History" : "./images/history.jpg",
+  "Politics" : "./images/politics.jpg",
+  "Art" : "./images/art.jpg",
+  "Celebrities" : "./images/background.jpg",
+  "Vehicles" : "./images/cars.jpg",
+  "Entertainment: Comics" : "./images/comic-book.jpg",
+  "Science: Gadgets" : "./images/Gadgets.jpg",
+  "Entertainment: Japanese Anime & Manga" : "./images/Japanese-Anime.png",
+  "Entertainment: Cartoon & Animations" : "./images/animation.jpg",
+  "Entertainment: Musicals & Theatres" : "./images/animation.jpg"
 }
 
 class TriviaQuestions extends Component {
@@ -111,10 +108,10 @@ class TriviaQuestions extends Component {
     this.shuffle(answers)
 
     return (
-      <div>
-        <Jumbotron>
 
-          <img id="background" src={categoryImage} alt="Category Image"/>
+      <div>
+
+          <img id="background" src={categoryImage} alt="category"/>
           <h1>Welcome to Trivia!</h1>
           <p className={currentQuestion.category}>{currentQuestion.category}</p>
           <p className="question">{currentQuestion.question}</p>
@@ -123,8 +120,7 @@ class TriviaQuestions extends Component {
           <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[2])}>{answers[2]}</Button>
           <Button bsStyle="primary" onClick={this.answerClick.bind(this, answers[3])}>{answers[3]}</Button>
 
-        </Jumbotron>
-        <Chat username='test user'/>
+
 
 
         {false && this.state.questions.map(question => {
