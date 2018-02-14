@@ -63,126 +63,142 @@ class SignUp extends Component {
                             )}
                         </Col>
                     </Row>
-
-                    <div className="forms">
-                        <Row>
-                            <Col xs={6}>
-                                <FormGroup
-                                    id="firstName-form-group"
-                                    validationState={
-                                        this.errorsFor("firstName") && "error"
-                                    }
-                                >
-                                    <ControlLabel id="firstName">
-                                        First Name
-                                    </ControlLabel>
-                                    <FormControl
-                                        type="text"
-                                        name="firstName"
-                                        value={this.state.form.firstName}
-                                        onChange={this.handleChange.bind(this)}
-                                    />
-                                    {this.errorsFor("firstName") && (
-                                        <HelpBlock id="firstName-help-block">
-                                            {this.errorsFor("firstName")}
-                                        </HelpBlock>
-                                    )}
-                                </FormGroup>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col xs={6}>
-                                <FormGroup
-                                    id="lastName-form-group"
-                                    validationState={
-                                        this.errorsFor("lastName") && "error"
-                                    }
-                                >
-                                    <ControlLabel id="lastName">
-                                        Last Name
-                                    </ControlLabel>
-                                    <FormControl
-                                        type="text"
-                                        name="lastName"
-                                        onChange={this.handleChange.bind(this)}
-                                        value={this.state.form.lastName}
-                                    />
-                                    {this.errorsFor("lastName") && (
-                                        <HelpBlock id="lastName-help-block">
-                                            {this.errorsFor("lastName")}
-                                        </HelpBlock>
-                                    )}
-                                </FormGroup>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col xs={6}>
-                                <FormGroup
-                                    id="email-form-group"
-                                    validationState={
-                                        this.errorsFor("email") && "error"
-                                    }
-                                >
-                                    <ControlLabel id="email">
-                                        Email
-                                    </ControlLabel>
-                                    <FormControl
-                                        type="text"
-                                        name="email"
-                                        onChange={this.handleChange.bind(this)}
-                                        value={this.state.form.email}
-                                    />
-                                    {this.errorsFor("email") && (
-                                        <HelpBlock id="email-help-block">
-                                            {this.errorsFor("email")}
-                                        </HelpBlock>
-                                    )}
-                                </FormGroup>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col xs={6}>
-                                <FormGroup
-                                    id="encryptedPassword-form-group"
-                                    validationState={
-                                        this.errorsFor("encryptedPassword") &&
-                                        "error"
-                                    }
-                                >
-                                    <ControlLabel id="encryptedPassword">
-                                        Password
-                                    </ControlLabel>
-                                    <FormControl
-                                        type="password"
-                                        name="encryptedPassword"
-                                        onChange={this.handleChange.bind(this)}
-                                        value={
-                                            this.state.form.encryptedPassword
+                    <div className="masterForm">
+                        <div className="form" id="formID">
+                            <Row>
+                                <Col xs={6}>
+                                    <FormGroup
+                                        id="firstName-form-group"
+                                        validationState={
+                                            this.errorsFor("firstName") &&
+                                            "error"
                                         }
-                                    />
-                                    {this.errorsFor("encryptedPassword") && (
-                                        <HelpBlock id="encryptedPassword-help-block">
-                                            {this.errorsFor(
-                                                "encryptedPassword"
+                                    >
+                                        <ControlLabel id="firstName">
+                                            First Name
+                                        </ControlLabel>
+                                        <FormControl
+                                            type="text"
+                                            name="firstName"
+                                            value={this.state.form.firstName}
+                                            onChange={this.handleChange.bind(
+                                                this
                                             )}
-                                        </HelpBlock>
-                                    )}
-                                </FormGroup>
-                            </Col>
-                        </Row>
+                                        />
+                                        {this.errorsFor("firstName") && (
+                                            <HelpBlock id="firstName-help-block">
+                                                {this.errorsFor("firstName")}
+                                            </HelpBlock>
+                                        )}
+                                    </FormGroup>
+                                </Col>
+                            </Row>
 
-                        <Row>
-                            <Col xs={6}>
-                                <Button className="submitForm"
-                                    onClick={this.handleSubmit.bind(this)}
-                                >
-                                    Create a Trivia Account!
-                                </Button>
-                            </Col>
-                        </Row>
+                            <Row>
+                                <Col xs={6}>
+                                    <FormGroup
+                                        id="lastName-form-group"
+                                        validationState={
+                                            this.errorsFor("lastName") &&
+                                            "error"
+                                        }
+                                    >
+                                        <ControlLabel id="lastName">
+                                            Last Name
+                                        </ControlLabel>
+                                        <FormControl
+                                            type="text"
+                                            name="lastName"
+                                            onChange={this.handleChange.bind(
+                                                this
+                                            )}
+                                            value={this.state.form.lastName}
+                                        />
+                                        {this.errorsFor("lastName") && (
+                                            <HelpBlock id="lastName-help-block">
+                                                {this.errorsFor("lastName")}
+                                            </HelpBlock>
+                                        )}
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+
+                            <Row>
+                                <Col xs={6}>
+                                    <FormGroup
+                                        id="email-form-group"
+                                        validationState={
+                                            this.errorsFor("email") && "error"
+                                        }
+                                    >
+                                        <ControlLabel id="email">
+                                            Email
+                                        </ControlLabel>
+                                        <FormControl
+                                            type="text"
+                                            name="email"
+                                            onChange={this.handleChange.bind(
+                                                this
+                                            )}
+                                            value={this.state.form.email}
+                                        />
+                                        {this.errorsFor("email") && (
+                                            <HelpBlock id="email-help-block">
+                                                {this.errorsFor("email")}
+                                            </HelpBlock>
+                                        )}
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+
+                            <Row>
+                                <Col xs={6}>
+                                    <FormGroup
+                                        id="encryptedPassword-form-group"
+                                        validationState={
+                                            this.errorsFor(
+                                                "encryptedPassword"
+                                            ) && "error"
+                                        }
+                                    >
+                                        <ControlLabel id="encryptedPassword">
+                                            Password
+                                        </ControlLabel>
+                                        <FormControl
+                                            type="password"
+                                            name="encryptedPassword"
+                                            onChange={this.handleChange.bind(
+                                                this
+                                            )}
+                                            value={
+                                                this.state.form
+                                                    .encryptedPassword
+                                            }
+                                        />
+                                        {this.errorsFor(
+                                            "encryptedPassword"
+                                        ) && (
+                                            <HelpBlock id="encryptedPassword-help-block">
+                                                {this.errorsFor(
+                                                    "encryptedPassword"
+                                                )}
+                                            </HelpBlock>
+                                        )}
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+
+                            <Row>
+                                <Col xs={6}>
+                                    <Button
+                                        className="submitForm"
+                                        onClick={this.handleSubmit.bind(this)}
+                                    >
+                                        Create a Trivia Account!
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </div>
                     </div>
                 </form>
             </div>
