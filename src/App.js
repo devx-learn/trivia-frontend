@@ -17,6 +17,8 @@ class App extends Component {
         }
     }
 
+    newUserSubmit(){}
+
     handleNewUser = (user) => {
         createNewUser(user)
         .then((res) => {
@@ -28,8 +30,8 @@ class App extends Component {
 
             this.setState({
                 user: user,
-                errors: errors,
                 newUserSuccess: success,
+                errors: errors
             })
         })
         .catch(e => console.log("error creating user:", e))
@@ -52,8 +54,6 @@ class App extends Component {
     }
 }
 
-export default App;
-
 const API = "http://localhost:3000"
 
 function createNewUser(user) {
@@ -67,15 +67,4 @@ function createNewUser(user) {
     .then((raw) => raw.json())
 }
 
-// newUserSubmit(){}
-
-// componentWillMount(){
-//   fetch(`${this.state.apiUrl}/user`)
-//   .then((rawResponse) =>{
-//       return rawResponse.json()
-//   })
-//   .then((parsedResponse)=>{
-//       this.setState({user: parsedResponse.user})
-//       console.log(this.state.user);
-//   })
-// }
+export default App;
