@@ -274,15 +274,16 @@ render() {
             </Row>
 
             <Row>
-            <Col xs={6}>
-            <Button
-            className="submitForm"
-            onClick={this.handleSubmit.bind(this)}
-            >
-            Create a Trivia Account!
-            </Button>
-            </Col>
+                <Col xs={6}>
+                    <Button
+                    className="submitForm"
+                    onClick={this.handleSubmit.bind(this)}
+                    >
+                    Create a Trivia Account!
+                    </Button>
+                </Col>
             </Row>
+
             </div>
         </div>
     </form>
