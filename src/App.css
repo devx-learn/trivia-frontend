@@ -3,9 +3,14 @@
   height: 100vh;
 }
 
-h1 {
+.devX  {
   text-align: center;
-  color: #ffffff;
+  color: #DBE0E7;
+}
+
+#welcome {
+  color: #DBE0E7;
+  text-align: center;
 }
 
 .signin {
@@ -29,8 +34,15 @@ h1 {
     z-index: -1;
 }
 
+
+
+#signUpForm {
+  display: flex;
+  justify-content: center;
+}
 .signup {
   text-align: center;
+
   border: 5px solid #C5EAD8;
   border-radius: 50px;
   background-color: #C5EAD8;
@@ -42,44 +54,39 @@ h1 {
 
 .question {
   font-size: 30px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
   width:850px;
   padding:15px;
-  background-color:white;
+  background-color:#DBE0E7;
   margin:0 auto;
   color: #0D2E47;
   font-family: Arial,Helvetica,sans-serif;
-  opacity:0.6;
+  opacity:0.8;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 
 .category {
   font-size: 15px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
   width:850px;
   padding:15px;
-  background-color:white;
+  background-color:#DBE0E7;
   margin:0 auto;
   color: #0D2E47;
   font-family: Arial,Helvetica,sans-serif;
-  opacity:0.6;
+  opacity:0.8;
 }
 
 .score {
   font-size: 15px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
   width:850px;
   padding:15px;
-  background-color:white;
+  background-color:#DBE0E7;
   margin:0 auto;
   color: #0D2E47;
   font-family: Arial,Helvetica,sans-serif;
-  opacity:0.6;
+  opacity:0.8;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
 }
 
 .primary{
@@ -101,7 +108,8 @@ h1 {
   font-size: 499px;
 }
 
-#logInbtn {
+
+  #logInbtn {
   background-color: #ffffff;
   border: 2px solid #000000;
   color: #000000;
@@ -160,4 +168,32 @@ h1 {
   border-color: #1F3E5A;
   color: white;
   transition-duration: 1s;
+}
+
+.answer-container {
+  min-width: 400px;
+  max-width:  850px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap:  wrap;
+}
+
+.answer-button {
+  margin:  20px;
+  background-color: #DBE0E7;
+  min-width:  370px;
+  padding:  10px 30px;
+  border-radius:  5px;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.answer-button:hover {
+  background-color: #83868A;
+  color: #fff;
+  opacity: 1;
+}
+.welcome {
+  color: #DBE0E7;
 }
