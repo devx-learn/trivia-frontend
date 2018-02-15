@@ -34,8 +34,15 @@
     z-index: -1;
 }
 
+
+
+#signUpForm {
+  display: flex;
+  justify-content: center;
+}
 .signup {
   text-align: center;
+
   border: 5px solid #C5EAD8;
   border-radius: 50px;
   background-color: #C5EAD8;
@@ -97,7 +104,8 @@
   font-size: 499px;
 }
 
-#logInbtn {
+
+  #logInbtn {
   background-color: #ffffff;
   border: 2px solid #000000;
   color: #000000;

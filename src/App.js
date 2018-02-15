@@ -7,57 +7,33 @@ import './App.css'
 
 
 class App extends Component {
-  constructor(props){
-      super(props)
-      this.state = {
-          user: [],
-          newUserSuccess: false,
-          errors: null
-      }
-  }
+    constructor(props){
+        super(props)
 
-  newUserSubmit(){}
-
-  // componentWillMount(){
-  //   fetch(`${this.state.apiUrl}/user`)
-  //   .then((rawResponse) =>{
-  //       return rawResponse.json()
-  //   })
-  //   .then((parsedResponse)=>{
-  //       this.setState({user: parsedResponse.user})
-  //       console.log(this.state.user);
-  //   })
-  // }
-
-
-  handleNewUser(params){
-    fetch(`${this.state.apiUrl}/user`,
-        {
-            body: JSON.stringify(params),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: "POST"
+        this.state = {
+            user: [],
+            newUserSuccess: false,
+            errors: null
         }
-    )
-    .then((rawResponse)=>{
-        return rawResponse.json()
-    })
-    .then((parsedResponse) =>{
-        if(parsedResponse.errors){
-            this.setState({errors: parsedResponse.errors})
-        }else{
-            const user = Object.assign([], this.state.user)
-            user.push(parsedResponse.user)
+    }
+
+    handleNewUser = (user) => {
+        createNewUser(user)
+        .then((res) => {
+            console.log(res)
+
+            const { user, errors } = res
+
+            let success = res.errors ? false : true
+
             this.setState({
                 user: user,
-                errors: null,
-                newUserSuccess: true
+                errors: errors,
+                newUserSuccess: success,
+            })
         })
-       }
-    })
-  }
-
+        .catch(e => console.log("error creating user:", e))
+    }
 
     render() {
         return (
@@ -67,7 +43,9 @@ class App extends Component {
                         <Route exact path='/' component={LandingPage} />
                     </div>
                         <Route path='/games' component={GamePage} />
-                        <Route path='/sign-up' component={SignUp} />
+                        <Route path='/signup' render={(props) => {
+                            return <SignUp onSubmit={this.handleNewUser} />
+                        }} />
                 </div>
             </Router>
         )
@@ -75,3 +53,29 @@ class App extends Component {
 }
 
 export default App;
+
+const API = "http://localhost:3000"
+
+function createNewUser(user) {
+    return fetch(`${API}/users`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user),
+    })
+    .then((raw) => raw.json())
+}
+
+// newUserSubmit(){}
+
+// componentWillMount(){
+//   fetch(`${this.state.apiUrl}/user`)
+//   .then((rawResponse) =>{
+//       return rawResponse.json()
+//   })
+//   .then((parsedResponse)=>{
+//       this.setState({user: parsedResponse.user})
+//       console.log(this.state.user);
+//   })
+// }
