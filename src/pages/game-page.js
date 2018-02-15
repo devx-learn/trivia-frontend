@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Button } from "react-bootstrap"
 import "../App.css"
-import sample from "../sample"
+import io from "socket.io-client";
 
 const categoryImages = {
   "Animals": "./images/Animals.jpg",
@@ -30,99 +30,118 @@ const categoryImages = {
   "Entertainment: Musicals & Theatres" : "./images/animation.jpg"
 }
 
+
+
 class TriviaQuestions extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      rawData: sample,
-      currentQuestionIndex: 0,
+      question: {},
+      answerStatus: '',
+      correctAnswer: '',
       score: 0,
-      category: {
-        name: "",
-        image: ""
-      }
-    }
-  }
+      timeout: false
+    };
 
-  /**
-* Shuffles array in place.
-* @param {Array} a items An array containing the items.
-*/
-    shuffle(a) {
-        var j, x, i
-        for (i = a.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * (i + 1))
-            x = a[i]
-            a[i] = a[j]
-            a[j] = x
-        }
-    }
+    this.socket = io('/trivia');
+    this.socket.on('connect', () => {
+      this.socket.emit('signin', 'test user');
+      this.socket.on('question', this.newQuestion.bind(this));
+      this.socket.on('timeout', this.onTimeout.bind(this));
+      this.socket.on('right', this.rightAnswer.bind(this));
+      this.socket.on('wrong', this.wrongAnswer.bind(this));
+    })
+  }
 
   componentWillMount() {
-    let data = this.state.rawData.results
 
-    let questions = data.map((q) => {
-      return {
-        category: q.category,
-        type: q.type,
-        difficulty: q.difficulty,
-        question: q.question,
-        correct_answer: q.correct_answer,
-        incorrect_answers: q.incorrect_answers
-      }
-    })
+  }
 
-    this.shuffle(questions)
+  newQuestion(question) {
     this.setState({
-      questions: questions
+      question: question,
+      answerStatus: '',
+      correctAnswer:'',
+      timeout: false,
     })
   }
 
-  currentQuestion() {
-    const { questions, currentQuestionIndex } = this.state
-    return questions[currentQuestionIndex]
+  onTimeout() {
+    this.setState({
+      question:{},
+      answerStatus: '',
+      correctAnswer: '',
+      timeout: true
+    });
+  }
+
+  rightAnswer(score) {
+    this.setState({
+      question: {},
+      answerStatus: 'right',
+      score: score,
+      correctAnswer: '',
+      timeout: false
+    })
+  }
+
+  wrongAnswer(correctAnswer) {
+    this.setState({
+      question:{},
+      answerStatus: 'wrong',
+      correctAnswer: correctAnswer,
+      timeout: false
+    })
   }
 
   answerClick(answer) {
-    let { currentQuestionIndex, score } = this.state
-    let correctAnswer = this.currentQuestion().correct_answer
-
-    correctAnswer === answer ? score++ : score--
-
-    // if(correctAnswer === answer) {
-    //   alert("you're right")
-    //   score++
-    // } else {
-    //   alert("you're wrong, the correct answer is " + correctAnswer)
-    // }
-
-    this.setState({
-      currentQuestionIndex: currentQuestionIndex + 1,
-      score: score,
-    })
+    this.socket.emit('answer', answer);
   }
 
+
   render() {
-    let currentQuestion = this.currentQuestion()
+    let currentQuestion = this.state.question
     let categoryImage = categoryImages[currentQuestion.category]
-    let answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]
-
-    this.shuffle(answers)
-
+    let answers = currentQuestion.answers;
     const { score } = this.state
+    let questionBlock =
+    <div>
+      <div>Waiting for question</div>
+    </div>
+    
+  if (this.state.question.question && this.state.question.answers) {
+    questionBlock =
 
-    return (
       <div>
-          <img id="background" src={categoryImage} alt="category"/>
-          <h1>Welcome to Trivia!</h1>
-          <h3 className="score">Score: {score}</h3>
-          <p className="category">{currentQuestion.category}</p>
+          <h3 className="question">Score: {score}</h3>
+          <p className={currentQuestion.category}>{currentQuestion.category}</p>
           <p className="question">{decodeEntities(currentQuestion.question)}</p>
-          <h2></h2>
           {answers.map((a) => {
             return <Button key={a} bsStyle="primary" onClick={this.answerClick.bind(this, a)}>{decodeEntities(a)}</Button>
           })}
+      </div>
+    } else if (this.state.answerStatus === 'right') {
+      questionBlock =
+      <div>
+        <p>Youre right!!</p>
+      </div>
+    } else if (this.state.answerStatus === 'wrong') {
+      questionBlock =
+      <div>
+        <p>Sorry, the correct answer is "{this.state.correctAnswer}"</p>
+      </div>
+    } else if (this.state.timeout) {
+      questionBlock =
+      <div>
+        <p>Sorry, time is up.</p>
+      </div>
+    }
+    return (
+      <div>
+      <img id="background" src={categoryImage} alt="category"/>
+      <h1>Welcome to Trivia!</h1>
+          {questionBlock}
       </div>
     )
   }

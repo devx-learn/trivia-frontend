@@ -1,4 +1,4 @@
-/* .chat {
+.chat {
     position: relative;
     margin: 0 auto;
     margin-top: 10px;
@@ -110,4 +110,4 @@
 .chat-message-timeStamp {
     font-style: italic;
     font-size: 8px;
-} */
+}
