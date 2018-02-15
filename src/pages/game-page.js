@@ -22,41 +22,32 @@ class TriviaQuestions extends Component {
 * Shuffles array in place.
 * @param {Array} a items An array containing the items.
 */
-    shuffle(a) {
-        var j, x, i;
-        for (i = a.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * (i + 1));
-            x = a[i];
-            a[i] = a[j];
-            a[j] = x;
-        }
+
+// All solid responses in log
+    componentWillMount() {
+        this.fetchQuestions();
     }
 
-    async componentDidMount() {
-        await this.setState({ rawData : fetchParameters()})
-        await this.apiNormalization();
-    }
+    async fetchQuestions() {
+        let results = await fetchParameters()
+        let questions = []
 
-    apiNormalization() {
-        if (this.state.rawData != "" && !this.state.rawData.results) {
-            return
-        }
-        let questionData = this.state.rawData.results;
-        let newQuestions = [];
-        let questions = [];
-
-        questionData.forEach(result => {
-            newQuestions.push({
+        results.forEach(result => {
+            questions.push({
                 category: result.category,
                 type: result.type,
                 difficulty: result.difficulty,
                 question: result.question,
                 correct_answer: result.correct_answer,
                 incorrect_answers: result.incorrect_answers
-            });
-        });
-        this.shuffle(newQuestions);
-        this.setState({ questions: newQuestions });
+            })
+        })
+
+        shuffle(questions)
+
+        this.setState({
+            questions: questions
+        })
     }
 
     answerClick(answer) {
@@ -73,16 +64,22 @@ class TriviaQuestions extends Component {
     }
 
     render() {
-        if (!this.state.rawData || !this.state.questions) {
+        const { questions } = this.state
+
+        console.log("questions in render:", questions);
+
+        if (!questions) {
             return <h1>Loading...</h1>;
         }
+
         let currentQuestion = this.state.questions[
             this.state.currentQuestionIndex
-        ];
+        ]
+
         let answers = [];
         answers.push(currentQuestion.correct_answer);
         answers = answers.concat(currentQuestion.incorrect_answers);
-        this.shuffle(answers);
+        shuffle(answers);
 
         return (
             <div>
@@ -156,7 +153,15 @@ class TriviaQuestions extends Component {
 
 export default TriviaQuestions;
 
-
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+}
 
 /************************ FETCH DYNAMIC URL PARAMETERS *****************/
 
@@ -214,7 +219,7 @@ async function fetchQuestions(amount, category, difficulty, type, token) {
     })
     .then((res) => {
         console.log(res);
-        return res.results
+         return res.results
     })
     .catch(error => console.error("Error Fetching Questions:", error));
 }
@@ -232,5 +237,5 @@ async function fetchParameters() {
 
     console.log("questions:", questions);
 
-    return questions
+     return questions
 }
