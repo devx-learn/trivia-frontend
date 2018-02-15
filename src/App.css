@@ -89,6 +89,10 @@
   border-top-left-radius: 15px;
 }
 
+.primary{
+    margin:0 auto;
+}
+
 .trans {
   background-color:white;
   color: #0D2E47;
