@@ -14,8 +14,9 @@ class SignIn extends Component {
         super(props);
         this.state = {
             form: {
-                username: "",
-                password: ""
+                email: "",
+                password: "",
+                errors: {}
             }
         };
     }
@@ -26,17 +27,20 @@ class SignIn extends Component {
     }
 
     render() {
+        const { form, errors } = this.state
+        const { firstName, lastName, email, password } = form
+
         return (
             <form>
                 <Row>
                     <Col xs={6}>
                         <FormGroup>
-                            <ControlLabel id="username"></ControlLabel>
+                            <ControlLabel id="email"></ControlLabel>
                             <FormControl
                                 type="text"
-                                name="username"
-                                placeholder="Username"
-                                value={this.state.form.username}
+                                name="email"
+                                placeholder="Email"
+                                value={email}
                                 onChange={this.handleChange.bind(this)}
                             />
                         </FormGroup>

@@ -26,10 +26,9 @@ class SignUp extends Component {
 
     handleChange(e) {
         const { form } = this.state
+        const { name, value } = e.target
 
-        form[e.target.name] = e.target.value
-
-        console.log(form);
+        form[name] = value
 
         this.setState({
             form: form
@@ -40,36 +39,55 @@ class SignUp extends Component {
         const { onSubmit } = this.props
         const { form } = this.state
 
-        console.log("form:", form);
-
         if(onSubmit) {
             onSubmit(form)
+            .then((res) => {
+                console.log("this is the response that eric is looking for", res);
+                // Join the websocket
+
+                const { errors } = res
+
+                if(errors) {
+                    this.setState({
+                        errors: errors.validations
+                    })
+
+                    return
+                }
+            })
         } else {
             console.log("no onSubmit passed to Signup Component");
         }
     }
 
     errorsFor(attribute) {
-        var errorString = "";
-        if (this.props.errors) {
-            const errors = this.props.errors.filter(
-                error => error.param === attribute
-            );
-            if (errors) {
-                errorString = errors.map(error => error.msg).join(", ");
+        const { errors } = this.state
+        let errorString
+
+        if(errors) {
+            const filtered = errors.filter(e => e.param === attribute)
+
+            console.log("filtered", filtered);
+
+            if (filtered) {
+                errorString = filtered.map(e => e.param + " " + e.msg).join(", ")
             }
+        } else {
+            return
         }
-        return errorString === "" ? null : errorString;
+
+        return errorString === undefined ? undefined : errorString
     }
 
     render(){
-        const { firstName, lastName, email, password } = this.state.form
+        const { form, errors } = this.state
+        const { firstName, lastName, email, password } = form
 
         return (
-            <form>
+            <form style={{marginLeft: 200}}>
                 <Row>
                     <Col xs={6}>
-                        {this.props.errors &&
+                        {errors &&
                             <Alert bsStyle="danger">
                                 Please check the form and try again.
                             </Alert>

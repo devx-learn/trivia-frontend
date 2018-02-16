@@ -50,7 +50,9 @@ class App extends Component {
                     <Route path='/games' render={(props) => {
                         <GamePage username={username} {...props}/>
                     }} />
-                    <Route path='/signup' component={SignUp} />
+                    <Route path='/signup' render={(props) => {
+                        return <SignUp onSubmit={createNewUser} />
+                    }} />
                 </div>
             </Router>
         )
@@ -70,10 +72,6 @@ function createNewUser(user) {
         body: JSON.stringify(user),
     })
     .then((raw) => raw.json())
-    .then((res) => {
-        console.log(res);
-        return res
-    })
 }
 
 export default App;
