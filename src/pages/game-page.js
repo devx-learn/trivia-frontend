@@ -200,69 +200,7 @@ class TriviaQuestions extends Component {
 }
 }
 
-<<<<<<< HEAD
-=======
-
-
 export default TriviaQuestions
->>>>>>> socket
-
-        correctAnswer === answer ? score++ : score--;
-
-        // if(correctAnswer === answer) {
-        //   alert("you're right")
-        //   score++
-        // } else {
-        //   alert("you're wrong, the correct answer is " + correctAnswer)
-        // }
-
-        this.setState({
-            currentQuestionIndex: currentQuestionIndex + 1,
-            score: score
-        });
-    }
-
-    render() {
-        let currentQuestion = this.currentQuestion();
-        let categoryImage = categoryImages[currentQuestion.category];
-        let answers = [
-            currentQuestion.correct_answer,
-            ...currentQuestion.incorrect_answers
-        ];
-
-        this.shuffle(answers);
-
-        const { score } = this.state;
-
-        return (
-            <div>
-                <img id="background" src={categoryImage} alt="category" />
-                <h1 id="welcome">Welcome to Trivia!</h1>
-                <h3 className="score">Score: {score}</h3>
-                <p className="category">{currentQuestion.category}</p>
-                <p className="question">
-                    {decodeEntities(currentQuestion.question)}
-                </p>
-                <h2 />
-                <div className="answer-container">
-                    {answers.map(a => {
-                        return (
-                            <div
-                                className="answer-button"
-                                key={a}
-                                onClick={this.answerClick.bind(this, a)}
-                            >
-                                {decodeEntities(a)}
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
-        );
-    }
-}
-
-export default TriviaQuestions;
 
 function decodeEntities(encodedString) {
 
