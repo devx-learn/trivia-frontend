@@ -108,33 +108,20 @@ class TriviaQuestions extends Component {
     let currentQuestion = this.state.question
     let categoryImage = categoryImages[currentQuestion.category]
     let answers = currentQuestion.answers;
-    const {
-      score
-    } = this.state
+    const {score} = this.state
     let questionBlock = <
       div >
       <
       div > Waiting
-    for question < /div> < /
-    div >
+    for question < /div> </div >
+
 
       if (this.state.question.question && this.state.question.answers) {
         questionBlock =
 
-          <
-          div >
-          <
-          h3 className = "question" > Score: {
-            score
-          } < /h3> <
-        p className = {
-          currentQuestion.category
-        } > {
-          currentQuestion.category
-        } < /p> <
-        p className = "question" > {
-          decodeEntities(currentQuestion.question)
-        } < /p> {
+          <div>
+          <h3 className = "question"> Score: {score} </h3> <p className = {currentQuestion.category}>{currentQuestion.category} </p>
+          <p className = "question"> {decodeEntities(currentQuestion.question)} < /p> {
         answers.map((a) => {
           return <Button key = {
             a
@@ -146,8 +133,8 @@ class TriviaQuestions extends Component {
             decodeEntities(a)
           } < /Button>
         })
-      } <
-      /div>
+      }
+      </div>
   } else if (this.state.answerStatus === 'right') {
     questionBlock = <
       div >
@@ -172,17 +159,16 @@ class TriviaQuestions extends Component {
       div >
       <
       img id = "background"
-      src = {categoryImage
+      src = {
+        categoryImage
       }
       alt = "category" / >
-      <
-      h1 > Welcome to Trivia! < /h1> {
-      questionBlock
-    } <
-    /div>
+      <h1> Welcome to Trivia! </h1> {questionBlock} </div>
 )
 }
 }
+
+
 
 export default TriviaQuestions
 
