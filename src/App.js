@@ -13,9 +13,11 @@ class App extends Component {
         this.state = {
             user: [],
             newUserSuccess: false,
-            errors: null
+            errors: null,
         }
     }
+
+    newUserSubmit(){}
 
     handleNewUser = (user) => {
         createNewUser(user)
@@ -28,12 +30,13 @@ class App extends Component {
 
             this.setState({
                 user: user,
-                errors: errors,
                 newUserSuccess: success,
+                errors: errors
             })
         })
         .catch(e => console.log("error creating user:", e))
     }
+
 
     render() {
         return (
@@ -52,11 +55,11 @@ class App extends Component {
     }
 }
 
-export default App;
-
 const API = "http://localhost:3000"
 
 function createNewUser(user) {
+    console.log("creating user:", user)
+
     return fetch(`${API}/users`, {
         method: "POST",
         headers: {
@@ -65,17 +68,10 @@ function createNewUser(user) {
         body: JSON.stringify(user),
     })
     .then((raw) => raw.json())
+    .then((res) => {
+        console.log(res);
+        return res
+    })
 }
 
-// newUserSubmit(){}
-
-// componentWillMount(){
-//   fetch(`${this.state.apiUrl}/user`)
-//   .then((rawResponse) =>{
-//       return rawResponse.json()
-//   })
-//   .then((parsedResponse)=>{
-//       this.setState({user: parsedResponse.user})
-//       console.log(this.state.user);
-//   })
-// }
+export default App;
