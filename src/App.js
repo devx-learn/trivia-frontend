@@ -7,8 +7,20 @@ import './App.css'
 
 
 class App extends Component {
+<<<<<<< HEAD
     constructor(props){
         super(props)
+=======
+  constructor(props){
+      super(props)
+      this.username = "Bob User";
+      this.state = {
+          user: [],
+          newUserSuccess: false,
+          errors: null
+      }
+  }
+>>>>>>> socket
 
         this.state = {
             user: [],
@@ -38,16 +50,26 @@ class App extends Component {
     }
 
     render() {
+      const gamePage = (props) => {
+        return (
+          <GamePage username={this.username} {...props}/> //store input feilds
+        );
+      }
         return (
             <Router>
                 <div className="header">
                     <div id="landingPage">
                         <Route exact path='/' component={LandingPage} />
                     </div>
+<<<<<<< HEAD
                         <Route path='/games' component={GamePage} />
                         <Route path='/signup' render={(props) => {
                             return <SignUp onSubmit={this.handleNewUser} />
                         }} />
+=======
+                        <Route path='/games' component={gamePage} /> //this.username
+                        <Route path='/sign-up' component={SignUp} />
+>>>>>>> socket
                 </div>
             </Router>
         )

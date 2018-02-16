@@ -40,27 +40,36 @@ const categoryImages = {
 class TriviaQuestions extends Component {
   constructor(props) {
     super(props);
+    this.username = props.username;
 
     this.state = {
       question: {},
       answerStatus: '',
       correctAnswer: '',
       score: 0,
-      timeout: false
+      timeout: false,
+      playerList: []
     };
 
     this.socket = io('/trivia');
     this.socket.on('connect', () => {
-      this.socket.emit('signin', 'test user'); //sends a "sign in" event to the server
+      this.socket.emit('signin', this.username); //sends a "sign in" event to the server
       this.socket.on('question', this.newQuestion.bind(this));
       this.socket.on('timeout', this.onTimeout.bind(this));
       this.socket.on('right', this.rightAnswer.bind(this));
       this.socket.on('wrong', this.wrongAnswer.bind(this));
+      this.socket.on('player-list', this.playerList.bind(this));
     })
   }
 
   componentWillMount() {
 
+  }
+
+  playerList(players) {
+    this.setState({
+      playerList: players
+    })
   }
 
   newQuestion(question) {
@@ -104,6 +113,17 @@ class TriviaQuestions extends Component {
     this.socket.emit('answer', answer);
   }
 
+  renderPlayerList() {
+    let playerList = this.state.playerList.map(player =>{
+      let playerElement =
+      <div className = 'playerElement'>
+      <div className = 'playerUserName'>{player.username}</div>
+      <div className = 'playerScore'>{player.score}</div>
+      </div>
+      return playerElement;
+    })
+    return playerList;
+  }
 
   render() {
     let currentQuestion = this.state.question
@@ -116,8 +136,8 @@ class TriviaQuestions extends Component {
       div >
       <
       div > Waiting
-    for question < /div> < /
-    div >
+    for question < /div> </div >
+
 
       if (this.state.question.question && this.state.question.answers) {
         questionBlock =
@@ -127,15 +147,11 @@ class TriviaQuestions extends Component {
           <
           h3 className = "question" > Score: {
             score
-          } < /h3> <
-        p className = {
-          currentQuestion.category
-        } > {
-          currentQuestion.category
-        } < /p> <
-        p className = "question" > {
-          decodeEntities(currentQuestion.question)
-        } < /p> {
+          } < /h3> <p className = {currentQuestion.category}>{currentQuestion.category} </p >
+          <
+          p className = "question" > {
+            decodeEntities(currentQuestion.question)
+          } < /p> {
         answers.map((a) => {
           return <Button key = {
             a
@@ -170,21 +186,26 @@ class TriviaQuestions extends Component {
     div >
   }
   return ( <
-      div >
-      <
-      img id = "background"
-      src = {categoryImage
-      }
-      alt = "category" / >
-      <
-      h1 > Welcome to Trivia! < /h1> {
-      questionBlock
-    } <
-    /div>
-)
+    div >
+    <div className = 'scoreBoard'>{this.renderPlayerList()}</div>
+    <
+    img id = "background"
+    src = {
+      categoryImage
+    }
+    alt = "category" / >
+    <
+    h1 > Welcome to Trivia! < /h1> {questionBlock} </div >
+  )
 }
 }
 
+<<<<<<< HEAD
+=======
+
+
+export default TriviaQuestions
+>>>>>>> socket
 
         correctAnswer === answer ? score++ : score--;
 
