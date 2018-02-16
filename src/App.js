@@ -9,6 +9,7 @@ import './App.css'
 class App extends Component {
   constructor(props){
       super(props)
+      this.username = "Bob User";
       this.state = {
           user: [],
           newUserSuccess: false,
@@ -60,13 +61,18 @@ class App extends Component {
 
 
     render() {
+      const gamePage = (props) => {
+        return (
+          <GamePage username={this.username} {...props}/> //store input feilds
+        );
+      }
         return (
             <Router>
                 <div className="header">
                     <div id="landingPage">
                         <Route exact path='/' component={LandingPage} />
                     </div>
-                        <Route path='/games' component={GamePage} />
+                        <Route path='/games' component={gamePage} /> //this.username
                         <Route path='/sign-up' component={SignUp} />
                 </div>
             </Router>
