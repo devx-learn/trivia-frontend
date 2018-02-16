@@ -11,26 +11,25 @@ class App extends Component {
         super(props)
 
         this.state = {
+            username: "Bob User",
             user: [],
             newUserSuccess: false,
             errors: null,
         }
     }
 
-    newUserSubmit(){}
+    newUserSubmit() {
+
+    }
 
     handleNewUser = (user) => {
         createNewUser(user)
         .then((res) => {
-            console.log(res)
-
             const { user, errors } = res
-
-            let success = res.errors ? false : true
 
             this.setState({
                 user: user,
-                newUserSuccess: success,
+                newUserSuccess: res.errors ? false : true,
                 errors: errors
             })
         })
@@ -39,16 +38,19 @@ class App extends Component {
 
 
     render() {
+        const { username } = this.state
+
         return (
             <Router>
                 <div className="header">
                     <div id="landingPage">
                         <Route exact path='/' component={LandingPage} />
                     </div>
-                        <Route path='/games' component={GamePage} />
-                        <Route path='/signup' render={(props) => {
-                            return <SignUp onSubmit={this.handleNewUser} />
-                        }} />
+
+                    <Route path='/games' render={(props) => {
+                        <GamePage username={username} {...props}/>
+                    }} />
+                    <Route path='/signup' component={SignUp} />
                 </div>
             </Router>
         )
