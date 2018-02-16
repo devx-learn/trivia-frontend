@@ -1,9 +1,6 @@
 import React, {
   Component
-} from "react"
-import {
-  Button
-} from "react-bootstrap"
+} from "react";
 import "../App.css"
 import io from "socket.io-client";
 
@@ -25,7 +22,7 @@ const categoryImages = {
   "History": "./images/history.jpg",
   "Politics": "./images/politics.jpg",
   "Art": "./images/art.jpg",
-  "Celebrities": "./images/background.jpg",
+  "Celebrities": "./images/hollywood.jpg",
   "Vehicles": "./images/cars.jpg",
   "Entertainment: Comics": "./images/comic-book.jpg",
   "Science: Gadgets": "./images/Gadgets.jpg",
@@ -134,21 +131,22 @@ class TriviaQuestions extends Component {
     let answers = currentQuestion.answers;
     const { score } = this.state
     let questionBlock =
-      <div>
-          <div> Waiting for question </div>
+      <div className="masterWaiting">
+          <div id="waiting"> Waiting for question </div>
       </div>
 
       if (this.state.question.question && this.state.question.answers) {
         questionBlock =
-        <div>
-        <div className = 'scoreBoard'>{this.renderPlayerList()}</div>
-          <h3 className = 'question' > Score: {score} </h3>
-          <p className = 'category'>{currentQuestion.category} </p>
-          <p className = 'question' > {decodeEntities(currentQuestion.question)} </p>
-          {answers.map((a) => {
-          return <Button key = {a} bsStyle = "primary" onClick = {this.answerClick.bind(this, a)}> {decodeEntities(a)} </Button>
-        })
-      }
+          <div>
+            <div className = 'scoreBoard'>{this.renderPlayerList()}</div>
+              <h3 className= 'score'> Score: {score} </h3>
+              <p className = 'category'>{currentQuestion.category} </p>
+              <p className = 'question'> {decodeEntities(currentQuestion.question)} </p>
+              <div className="answer-container">
+              {answers.map((a) => {
+              return <div className="answer-button" key = {a} onClick = {this.answerClick.bind(this, a)}> {decodeEntities(a)} </div>
+            })}
+          </div>
       </div>
   } else if (this.state.answerStatus === 'right') {
     questionBlock =
@@ -170,7 +168,7 @@ class TriviaQuestions extends Component {
   return (
     <div>
     <img id = "background" src = {categoryImage} alt = "category" />
-    <h1> Welcome to Trivia! </h1> {questionBlock} </div>
+    <h1 className="welcome"> Welcome to Trivia! </h1> {questionBlock} </div>
   )
 }
 }
