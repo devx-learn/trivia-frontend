@@ -49,7 +49,7 @@ class App extends Component {
                     <div id="landingPage">
                         <Route exact path='/' component={LandingPage} />
                     </div>
-                        <Route path='/games' component={gamePage} /> //this.username
+                        <Route path='/games' component={gamePage} /> 
                         <Route path='/sign-up' component={SignUp} />
                 </div>
             </Router>
