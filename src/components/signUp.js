@@ -18,18 +18,22 @@ class SignUp extends Component {
                 firstName: "",
                 lastName: "",
                 email: "",
-                encryptedPassword: "",
-                authToken: "",
-                authTokenExpiration: "",
-                salt: ""
+                password: "",
+                errors: {},
             }
         };
     }
 
-    handleChange(event) {
-        const formState = Object.assign({}, this.state.form);
-        formState[event.target.name] = event.target.value;
-        this.setState({ form: formState });
+    handleChange(e) {
+        const { form } = this.state
+
+        form[e.target.name] = e.target.value
+
+        console.log(form);
+
+        this.setState({
+            form: form
+        })
     }
 
     handleSubmit() {
@@ -43,9 +47,6 @@ class SignUp extends Component {
         } else {
             console.log("no onSubmit passed to Signup Component");
         }
-        this.props.onSubmit(this.state.form);
-        console.log(this.state.form);
-
     }
 
     errorsFor(attribute) {
@@ -62,6 +63,8 @@ class SignUp extends Component {
     }
 
     render(){
+        const { firstName, lastName, email, password } = this.state.form
+
         return (
             <form>
                 <Row>
@@ -84,7 +87,7 @@ class SignUp extends Component {
                      <FormControl
                        type="text"
                        name="firstName"
-                       value={this.state.form.firstName}
+                       value={firstName}
                        onChange={this.handleChange.bind(this)}
                      />
                     {this.errorsFor('firstName') &&
@@ -104,7 +107,7 @@ class SignUp extends Component {
                        type="text"
                        name="lastName"
                        onChange={this.handleChange.bind(this)}
-                       value={this.state.form.lastName}
+                       value={lastName}
                        />
                        {this.errorsFor('lastName') &&
                        <HelpBlock id="lastName-help-block">{this.errorsFor('lastName')}</HelpBlock>
@@ -123,7 +126,7 @@ class SignUp extends Component {
                        type="text"
                        name="email"
                        onChange={this.handleChange.bind(this)}
-                       value={this.state.form.email}
+                       value={email}
                        />
                        {this.errorsFor('email') &&
                        <HelpBlock id="email-help-block">{this.errorsFor('email')}</HelpBlock>
@@ -135,17 +138,17 @@ class SignUp extends Component {
                  <Row>
                    <Col xs={6}>
                      <FormGroup
-                        id="encryptedPassword-form-group"
-                        validationState={this.errorsFor('encryptedPassword') && 'error'}>
-                       <ControlLabel id="encryptedPassword">Password</ControlLabel>
+                        id="password-form-group"
+                        validationState={this.errorsFor('password') && 'error'}>
+                       <ControlLabel id="password">Password</ControlLabel>
                        <FormControl
                        type="password"
-                       name="encryptedPassword"
+                       name="password"
                        onChange={this.handleChange.bind(this)}
-                       value={this.state.form.encryptedPassword}
+                       value={password}
                        />
-                       {this.errorsFor('encryptedPassword') &&
-                       <HelpBlock id="encryptedPassword-help-block">{this.errorsFor('encryptedPassword')}</HelpBlock>
+                       {this.errorsFor('password') &&
+                       <HelpBlock id="password-help-block">{this.errorsFor('password')}</HelpBlock>
                         }
                      </FormGroup>
                    </Col>

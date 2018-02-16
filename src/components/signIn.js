@@ -70,7 +70,7 @@ class SignIn extends Component {
                 <Row>
                     <Col xs={6}>
                         <Link to="/signup">
-                            <Button id="logInbtn">
+                            <Button id="signUpbtn">
                                 Dont have a Trivia Accout?
                             </Button>
                         </Link>

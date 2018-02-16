@@ -13,7 +13,7 @@ class App extends Component {
         this.state = {
             user: [],
             newUserSuccess: false,
-            errors: null
+            errors: null,
         }
     }
 
@@ -37,6 +37,7 @@ class App extends Component {
         .catch(e => console.log("error creating user:", e))
     }
 
+
     render() {
         return (
             <Router>
@@ -57,6 +58,8 @@ class App extends Component {
 const API = "http://localhost:3000"
 
 function createNewUser(user) {
+    console.log("creating user:", user)
+
     return fetch(`${API}/users`, {
         method: "POST",
         headers: {
@@ -65,6 +68,10 @@ function createNewUser(user) {
         body: JSON.stringify(user),
     })
     .then((raw) => raw.json())
+    .then((res) => {
+        console.log(res);
+        return res
+    })
 }
 
 export default App;
