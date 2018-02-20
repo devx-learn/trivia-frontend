@@ -50,7 +50,7 @@ class App extends Component {
                         <Route exact path='/' component={LandingPage} />
                     </div>
                         <Route path='/games' component={gamePage} />
-                        <Route path='/sign-up' component={SignUp} />
+                        <Route path='/signup' component={SignUp} />
                 </div>
             </Router>
         )

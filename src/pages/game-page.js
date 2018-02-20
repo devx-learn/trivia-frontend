@@ -142,7 +142,7 @@ class TriviaQuestions extends Component {
               <h3 className= 'score'> Score: {score} </h3>
               <p className = 'category'>{currentQuestion.category} </p>
               <p className = 'question'> {decodeEntities(currentQuestion.question)} </p>
-              <div className="answer-container">
+            <div className="answer-container">
               {answers.map((a) => {
               return <div className="answer-button" key = {a} onClick = {this.answerClick.bind(this, a)}> {decodeEntities(a)} </div>
             })}
