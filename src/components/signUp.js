@@ -139,7 +139,7 @@ class SignUp extends Component {
                      <FormGroup
                         id="email-form-group"
                         validationState={this.errorsFor('email') && 'error'}>
-                       <ControlLabel id="email">email</ControlLabel>
+                       <ControlLabel id="email">Email</ControlLabel>
                        <FormControl
                        type="text"
                        name="email"
