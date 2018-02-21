@@ -100,6 +100,7 @@ class SignUp extends Component {
                     </Col>
                 </Row>
                 <div className="forms">
+                <h3>Sign-Up</h3>
                     <Row>
                         <Col xs={6}>
                             <FormGroup
